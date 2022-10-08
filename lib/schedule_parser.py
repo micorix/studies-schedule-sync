@@ -37,7 +37,7 @@ def get_blocks_time_boundaries(day_blocks_container):
 
 
 def parse_events_from_schedule(site_content):
-    soup = BeautifulSoup(site_content)
+    soup = BeautifulSoup(site_content, "html5lib")
     schedule_container = soup.find("div", class_="rozklad_container")
 
     for week_day_container in schedule_container.find_all("div", class_="day_v1"):
