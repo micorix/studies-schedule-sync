@@ -20,10 +20,11 @@ jobs:
         run: |
           export POETRY_HOME=/opt/poetry
           curl -sSL https://install.python-poetry.org | python3 - --version 1.2.0
-          $POETRY_HOME/bin/poetry --version
+          export PATH="/opt/poetry/bin:$PATH
+          poetry --version
 
       - name: Install deps
-        run: $POETRY_HOME/bin/poetry install
+        run: poetry install
 
       - name: Sync
-        run: $POETRY_HOME/bin/poetry run python3 main.py
+        run: poetry run python3 main.py
