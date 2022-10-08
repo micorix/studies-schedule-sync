@@ -42,7 +42,7 @@ You can place env vars in `.env` file.
 The primary purpose of this script is for it to be run in CI with cron trigger.
 
 You can find an example of running this in gh actions in `.github/workflows` dir. 
-To use it for yourself, clone this repo and substitute relevant constants & secrets.
+To use it for yourself, fork this repo and substitute relevant constants & secrets.
 
 [See here for the example](.github/workflows/sync_with_gcal.yml) 
 
