@@ -29,5 +29,16 @@ jobs:
       - name: Install deps
         run: poetry install
 
+      - name: Prepare token.json
+        env:
+          TOKEN_CONTENTS: ${{ secrets.TOKEN_CONTENTS }}
+        run: |
+          mkdir .creds
+          touch .creds/token.json
+          echo "$TOKEN_CONTENTS" > .creds/token.json
+
       - name: Sync
+        env:
+          SCHEDULE_PAGE_URL: ${{ secrets.SCHEDULE_PAGE_URL }}
+          UNIVERSITY_LOCATION: ${{ secrets.UNIVERSITY_LOCATION }}
         run: poetry run python3 main.py
