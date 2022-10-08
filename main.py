@@ -8,11 +8,8 @@ from lib.settings import settings
 
 def main():
     r = requests.get(settings.schedule_page_url)
-    print(r.content)
     events = parse_events_from_schedule(r.content)
-    print(list(events))
     events = map(map_schedule_event_to_gcal_event, events)
-    print(list(events))
     regenerate_calendar(events)
 
 

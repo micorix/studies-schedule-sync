@@ -7,6 +7,7 @@ def stringify_datetime(date_str, h_str):
 
 
 def map_schedule_event_to_gcal_event(schedule_event: ScheduleEventInfo):
+    print(schedule_event)
     return {
         "summary": schedule_event.get("name"),
         "location": settings.university_location,

@@ -79,11 +79,13 @@ def recreate_calendar(service):
     for cal in list_calendars(service):
         if cal["summary"] == settings.calendar_name:
             service.calendars().delete(calendarId=cal["id"]).execute()
+            print("Deleting previous calendar")
             break
 
     calendar = {"summary": settings.calendar_name, "timeZone": settings.timezone_city}
 
     created_calendar = service.calendars().insert(body=calendar).execute()
+    print(f"Recreated {settings.calendar_name} calendar")
     return created_calendar["id"]
 
 
