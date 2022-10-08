@@ -9,7 +9,9 @@ from lib.settings import settings
 def main():
     r = requests.get(settings.schedule_page_url)
     events = parse_events_from_schedule(r.content)
+    print(events)
     events = map(map_schedule_event_to_gcal_event, events)
+    print(events)
     regenerate_calendar(events)
 
 
