@@ -29,7 +29,9 @@ def get_gcal_service():
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
+            print("Reusing token credentials")
         else:
+            print("Initiating login flow")
             flow = InstalledAppFlow.from_client_secrets_file(
                 CREDENTIALS_FILE_PATH, SCOPES
             )
