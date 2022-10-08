@@ -40,6 +40,9 @@ def get_gcal_service():
         with open(TOKEN_FILE_PATH, "w") as token:
             token.write(creds.to_json())
 
+    if not creds:
+        raise Exception("No creds provided")
+
     return build("calendar", "v3", credentials=creds)
 
 
