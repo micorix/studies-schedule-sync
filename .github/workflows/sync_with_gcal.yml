@@ -1,3 +1,5 @@
+name: Sync with Google Calendar
+
 on:
   workflow_dispatch:
   schedule:
