@@ -4,7 +4,9 @@ Little script which syncs schedule from some page and places it in Google Calend
 
 Ultimately used in CI with cron as a trigger.
 
-[See here for the example](.github/workflows/sync_with_gcal.yml) 
+[See here for the example](.github/workflows/sync_with_gcal.yml)
+
+**:warning: Note: Please still check original schedule page. I did my best but I can't guarantee that this script works 100% of the time. If you stumble across some bug, please open an issue or submit a PR**
 
 ## Usage
 
