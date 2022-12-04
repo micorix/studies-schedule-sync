@@ -29,7 +29,7 @@ jobs:
       - name: Install deps
         run: poetry install
 
-      - name: Prepare token.json
+      - name: Prepare service-account.json
         env:
           SERVICE_ACCOUNT_KEY_CONTENTS: ${{ secrets.SERVICE_ACCOUNT_KEY_CONTENTS }}
         run: |

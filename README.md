@@ -14,6 +14,8 @@ Prerequisites:
 * [Enable Google Calendar API](https://developers.google.com/calendar/api/quickstart/python#enable_the_api)
 * [Create GCP service account](https://medium.com/@ArchTaqi/google-calendar-api-in-your-application-without-oauth-consent-screen-4fcc1f8eb380)
   * Download service account JSON key and place it as `service-account.json` file in `.creds` dir.
+* Create a calendar in Google Calendar
+* Share that calendar with GCP service account with (`edit` permission)
 * Setup env vars
 
 Requirements:
@@ -32,10 +34,9 @@ poetry run python main.py
 | Name | Required | Description |
 | - | :-: | - |
 | `SCHEDULE_PAGE_URL` | :heavy_check_mark: | URL of schedule page. Look out for the query (such as `?groupId=XXX`) |
+| `CALENDAR_ID` | :heavy_check_mark: | Calendar id. Something like `XXX@group.calendar.google.com` |
 | `UNIVERSITY_LOCATION` | :heavy_check_mark: | University location. |
-| `TIMEZONE_GMT` | :x: | e.g. "+2:00", "-7:00". "+2:00" by default |
 | `TIMEZONE_CITY` | :x: | e.g. "America/Los_Angeles", "Europe/Warsaw". "Europe/Warsaw" by default |
-| `STUDIES_CALENDAR_NAME` | :x: | `__STUDIES_SCHEDULE__` by default. Beware, calendar with this name will be recreated every time script run. |
 
 You can place env vars in `.env` file.
 
@@ -51,11 +52,15 @@ To use it for yourself, fork this repo and substitute relevant constants & secre
 **Remember to place `service-account.json` file contents as a secret.**
 ### Caveats
 
-Clearing non-primary calendar throws error 400. I couldn't get to the cause so for now calendar with given name will be deleted and recreated every time script runs.
+Clearing non-primary calendar throws error 400. I couldn't get to the cause so for now all events in calendar will be deleted one by one every time script runs.
 
 The problem with this solution is that: 
 1. it takes longer
-2. `calendarId` will be different every time
-3. any manual changes to the calendar won't be saved
+2. any manual changes to the calendar won't be saved
 
-If you come up with some clever solution how to solve it, feel free to submit a PR
+A possible solution is to update events in place but idk if any optimization at this stage is needed. 
+
+### Linter & formatter
+
+`poetry run flake8`
+`poetry run black .`

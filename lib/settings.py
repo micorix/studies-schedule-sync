@@ -13,6 +13,10 @@ def get_from_env_var(env_var_name, fallback=""):
 
 class Settings:
     @property
+    def calendar_id(self):
+        return get_from_env_var("CALENDAR_ID")
+
+    @property
     def schedule_page_url(self):
         return get_from_env_var("SCHEDULE_PAGE_URL")
 
@@ -21,16 +25,8 @@ class Settings:
         return get_from_env_var("UNIVERSITY_LOCATION")
 
     @property
-    def timezone_gmt(self):
-        return get_from_env_var("TIMEZONE_GMT", "+02:00")
-
-    @property
     def timezone_city(self):
         return get_from_env_var("TIMEZONE_CITY", "Europe/Warsaw")
-
-    @property
-    def calendar_name(self):
-        return get_from_env_var("STUDIES_CALENDAR_NAME", "__STUDIES_SCHEDULE__")
 
 
 settings = Settings()

@@ -3,7 +3,7 @@ from lib.settings import settings
 
 
 def stringify_datetime(date_str, h_str):
-    return f"{date_str}T{h_str}:00{settings.timezone_gmt}"
+    return f"{date_str}T{h_str}:00"
 
 
 def map_schedule_event_to_gcal_event(schedule_event: ScheduleEventInfo):
