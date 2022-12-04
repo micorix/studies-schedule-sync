@@ -31,11 +31,11 @@ jobs:
 
       - name: Prepare token.json
         env:
-          TOKEN_CONTENTS: ${{ secrets.TOKEN_CONTENTS }}
+          SERVICE_ACCOUNT_KEY_CONTENTS: ${{ secrets.SERVICE_ACCOUNT_KEY_CONTENTS }}
         run: |
           mkdir .creds
-          touch .creds/token.json
-          echo "$TOKEN_CONTENTS" > .creds/token.json
+          touch .creds/service-account.json
+          echo "$SERVICE_ACCOUNT_KEY_CONTENTS" > .creds/service-account.json
 
       - name: Sync
         env:

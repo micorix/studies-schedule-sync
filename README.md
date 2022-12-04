@@ -12,8 +12,8 @@ Ultimately used in CI with cron as a trigger.
 
 Prerequisites:
 * [Enable Google Calendar API](https://developers.google.com/calendar/api/quickstart/python#enable_the_api)
-* [Authorize credentials for a desktop application](https://developers.google.com/calendar/api/quickstart/python#authorize_credentials_for_a_desktop_application)
-  * Place `credentials.json` file in `.creds` dir.
+* [Create GCP service account](https://medium.com/@ArchTaqi/google-calendar-api-in-your-application-without-oauth-consent-screen-4fcc1f8eb380)
+  * Download service account JSON key and place it as `service-account.json` file in `.creds` dir.
 * Setup env vars
 
 Requirements:
@@ -48,9 +48,7 @@ To use it for yourself, fork this repo and substitute relevant constants & secre
 
 [See here for the example](.github/workflows/sync_with_gcal.yml) 
 
-**Remember to place `token.json` file contents as a secret.**
-You can get it by running the script locally and aborting after logging in using popup.
-
+**Remember to place `service-account.json` file contents as a secret.**
 ### Caveats
 
 Clearing non-primary calendar throws error 400. I couldn't get to the cause so for now calendar with given name will be deleted and recreated every time script runs.
