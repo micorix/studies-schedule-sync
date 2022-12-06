@@ -8,12 +8,18 @@ def stringify_datetime(date_str, h_str):
 
 def map_schedule_event_to_gcal_event(schedule_event: ScheduleEventInfo):
     print(schedule_event)
+    type = schedule_event.get('event_type')
+    if schedule_event.get('event_type') == "(w)":
+        type = "Wykład"
+    elif schedule_event.get('event_type') == "(ć)":
+        type = "Ćwiczenia"
+
     return {
         "summary": schedule_event.get("name"),
         "location": settings.university_location + ' at ' + schedule_event.get('location'),
         "description": "\n".join(
             [
-                f"Type: {schedule_event.get('event_type')}",
+                f"Type: {type}",
             ]
         ),
         "start": {
