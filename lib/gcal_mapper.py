@@ -13,9 +13,13 @@ def map_schedule_event_to_gcal_event(schedule_event: ScheduleEventInfo):
         type = "Wykład"
     elif schedule_event.get('event_type') == "(ć)":
         type = "Ćwiczenia"
+    elif schedule_event.get('event_type') == "(L)":
+
+    schedule_event.get("name").strip(
+        " - (Wykład)").strip(" - (Ćwiczenia)").strip(" - (Labolatoria)")
 
     return {
-        "summary": schedule_event.get("name"),
+        "summary": ,
         "location": settings.university_location + ' at ' + schedule_event.get('location'),
         "description": "\n".join(
             [
