@@ -4,8 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # This triggers the workflow every day at 4:00 UTC
-    - cron:  '30 4 * * *'
-
+    - cron: "30 4 * * *"
 
 jobs:
   sync:
@@ -39,6 +38,7 @@ jobs:
 
       - name: Sync
         env:
+          CALENDAR_ID: ${{ secrets.CALENDAR_ID }}
           SCHEDULE_PAGE_URL: ${{ secrets.SCHEDULE_PAGE_URL }}
           UNIVERSITY_LOCATION: ${{ secrets.UNIVERSITY_LOCATION }}
         run: poetry run python3 main.py
