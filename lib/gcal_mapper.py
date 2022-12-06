@@ -10,10 +10,9 @@ def map_schedule_event_to_gcal_event(schedule_event: ScheduleEventInfo):
     print(schedule_event)
     return {
         "summary": schedule_event.get("name"),
-        "location": settings.university_location,
+        "location": settings.university_location + ' at ' + schedule_event.get('location'),
         "description": "\n".join(
             [
-                f"Location: {schedule_event.get('location')}",
                 f"Type: {schedule_event.get('event_type')}",
             ]
         ),
@@ -28,12 +27,5 @@ def map_schedule_event_to_gcal_event(schedule_event: ScheduleEventInfo):
                 schedule_event.get("date"), schedule_event.get("time").get("end")
             ),
             "timeZone": settings.timezone_city,
-        },
-        "reminders": {
-            "useDefault": False,
-            "overrides": [
-                {"method": "email", "minutes": 60},
-                {"method": "popup", "minutes": 10},
-            ],
         },
     }
