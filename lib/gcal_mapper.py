@@ -8,13 +8,22 @@ def stringify_datetime(date_str, h_str):
 
 def map_schedule_event_to_gcal_event(schedule_event: ScheduleEventInfo):
     print(schedule_event)
+    type = schedule_event.get('event_type')
+    if schedule_event.get('event_type') == "(w)":
+        type = "Wykład"
+    elif schedule_event.get('event_type') == "(ć)":
+        type = "Ćwiczenia"
+    elif schedule_event.get('event_type') == "(L)":
+        type = "Labolatoria"
+    name = schedule_event.get("name")
+
     return {
-        "summary": schedule_event.get("name"),
-        "location": settings.university_location,
+        "summary": name.strip(
+            " - (Wykład)").strip(" - (Ćwiczenia)").strip(" - (Labolatoria)"),
+        "location": settings.university_location + ' at ' + schedule_event.get('location'),
         "description": "\n".join(
             [
-                f"Location: {schedule_event.get('location')}",
-                f"Type: {schedule_event.get('event_type')}",
+                f"Type: {type}",
             ]
         ),
         "start": {
@@ -28,12 +37,5 @@ def map_schedule_event_to_gcal_event(schedule_event: ScheduleEventInfo):
                 schedule_event.get("date"), schedule_event.get("time").get("end")
             ),
             "timeZone": settings.timezone_city,
-        },
-        "reminders": {
-            "useDefault": False,
-            "overrides": [
-                {"method": "email", "minutes": 60},
-                {"method": "popup", "minutes": 10},
-            ],
         },
     }
