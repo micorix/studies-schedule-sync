@@ -42,3 +42,5 @@ jobs:
           SCHEDULE_PAGE_URL: ${{ secrets.SCHEDULE_PAGE_URL }}
           UNIVERSITY_LOCATION: ${{ secrets.UNIVERSITY_LOCATION }}
         run: poetry run python3 main.py
+
+      - uses: gautamkrishnar/keepalive-workflow@v1
