@@ -30,7 +30,7 @@ def get_time_boundaries_by_block_id(block_nr_element):
 
 
 def parse_events_from_schedule(site_content):
-    soup = BeautifulSoup(site_content, "html5lib")
+    soup = BeautifulSoup(site_content, "lxml")
     schedule_container = soup.find("div", class_="lessons")
 
     for lesson_container in schedule_container.find_all("div", class_="lesson"):
